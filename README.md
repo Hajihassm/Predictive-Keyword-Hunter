@@ -1,40 +1,40 @@
 # 🚀 Predictive Keyword Hunter
 
-Yeh ek "Tofani" (powerful) SEO tool hai jo real-time news headlines ka istemal karke aise "future keywords" predict karta hai jin par abhi competition nahi hai.
+This is a powerful SEO tool that leverages real-time news headlines to predict "future keywords"—search terms that currently have little to no competition.
 
-Yeh script NewsAPI se top tech headlines uthati hai aur Google Gemini AI ka istemal karke un long-tail keywords ki list banati hai jo log agle 24-48 ghanton mein search karne wale hain.
+The script fetches top technology headlines from **NewsAPI** and uses **Google's Gemini AI** to generate a list of long-tail keywords and questions poised to trend within the next 24-48 hours.
 
-## 🌟 Features (Khususiyat)
+## 🌟 Features
 
-* **Real-time Trends:** NewsAPI se fori (instant) top headlines laata hai.
-* **AI-Powered Prediction:** Google Gemini (gemma-3n-e2b-it) ka istemal karke search intent ko predict karta hai.
-* **Zero-Volume Keywords:** Aapko aise keywords deta hai jin par "Zero Volume" hai, taaki aap sabse pehle rank kar sakein.
-* **Secure:** API keys ko code se alag (`.env` file) rakhta hai.
+* **Real-time Trends:** Fetches instant top headlines from NewsAPI.
+* **AI-Powered Prediction:** Uses Google Gemini (e.g., `gemma-3n-e2b-it`) to analyze search intent and predict queries.
+* **Zero-Volume Keywords:** Generates keywords that currently have "Zero Volume," allowing you to rank first.
+* **Secure:** Keeps API keys separate and safe from the main code using a `.env` file.
 
-## 🛠️ How It Works (Yeh Kaam Kaise Karta Hai?)
+## 🛠️ How It Works
 
-Project ka workflow bohot simple hai:
+The project workflow is straightforward:
 
 
 
-1.  **Data Collection:** `NewsApiClient` "US" se top "technology" headlines fetch karta hai.
-2.  **AI Prompting:** Top headline ko ek "seed topic" ke taur par istemal kiya jaata hai.
-3.  **Prediction:** Yeh headline Gemini AI ko ek khaas prompt ke saath bheji jaati hai.
-4.  **Output:** AI 15-20 predicted keywords ki ek list return karta hai, jise console par print kar diya jaata hai.
+1.  **Data Collection:** The `NewsApiClient` fetches the top "technology" headlines from the "US".
+2.  **AI Prompting:** The top headline is used as a "seed topic".
+3.  **Prediction:** This headline is sent to the Gemini AI with a specialized prompt.
+4.  **Output:** The AI returns a list of 15-20 predicted keywords, which are then printed to the console.
 
-## 💻 Technical Stack (Istemal Shuda Technology)
+## 💻 Technical Stack
 
 * **Python 3.9+**
 * **Libraries:**
-    * `google-generativeai`: Google Gemini API se baat karne ke liye.
-    * `newsapi-python`: NewsAPI.org se headlines laane ke liye.
-    * `python-dotenv`: API keys ko safely manage karne ke liye.
+    * `google-generativeai`: To interact with the Google Gemini API.
+    * `newsapi-python`: To fetch headlines from NewsAPI.org.
+    * `python-dotenv`: To safely manage API keys.
 
-## 🚀 Setup & Installation (Ise Kaise Chalayein)
+## 🚀 Setup & Installation
 
-Is project ko apne computer par chalane ke liye yeh steps follow karein:
+Follow these steps to run this project on your local machine:
 
-**1. Clone the Repository (Code Download Karein):**
+**1. Clone the Repository:**
 ```bash
-git clone [https://github.com/AAPKA-USERNAME/Predictive-Keyword-Hunter.git](https://github.com/AAPKA-USERNAME/Predictive-Keyword-Hunter.git)
+git clone [https://github.com/Hajihassm/Predictive-Keyword-Hunter.git](https://github.com/Hajihassm/Predictive-Keyword-Hunter.git)
 cd Predictive-Keyword-Hunter
