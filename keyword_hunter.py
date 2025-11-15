@@ -3,18 +3,15 @@ import google.generativeai as genai
 from newsapi import NewsApiClient
 from dotenv import load_dotenv
 
-# Step 1: .env file se API keys load karein
 load_dotenv()
 NEWS_API_KEY = os.getenv('NEWS_API_KEY')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
-# Check karein ki keys load hui hain ya nahi
 if not NEWS_API_KEY or not GEMINI_API_KEY:
-    print("Error: API keys .env file mein nahi milin.")
-    print("Check karein ki .env file ka naam sahi hai aur usmein keys maujood hain.")
+    print("Error: API keys not found in .env file.")
+    print("Check that the .env file exists and contains your keys.")
     exit()
 
-# --- MODULE 1: NewsAPI se Data Fetch Karna ---
 def get_top_headline():
     try:
         newsapi = NewsApiClient(api_key=NEWS_API_KEY)
@@ -25,7 +22,6 @@ def get_top_headline():
                                               )
         
         if top_headlines['status'] == 'ok' and top_headlines['totalResults'] > 0:
-            # Sirf pehli headline return karein
             first_headline = top_headlines['articles'][0]['title']
             return first_headline
         else:
@@ -34,20 +30,12 @@ def get_top_headline():
         print(f"NewsAPI Error: {e}")
         return None
 
-# --- MODULE 3: Gemini AI se Keywords Generate Karna ---
-# --- MODULE 3: Gemini AI se Keywords Generate Karna ---
 def get_predicted_keywords(headline):
     try:
-        # Gemini API ko configure karein
         genai.configure(api_key=GEMINI_API_KEY)
         
-        # --- YAHAN BADLAAV KIYA GAYA HAI ---
-        # Humne 'gemini-pro' ko 'gemini-1.5-flash' se badal diya hai
-        # Yeh naya aur tez model hai
         model = genai.GenerativeModel('gemma-3n-e2b-it') 
-        # --- END BADLAAV ---
         
-        # Hamara "Tofani" Prompt
         prompt = f"""
         Headline: "{headline}"
 
@@ -62,7 +50,6 @@ def get_predicted_keywords(headline):
         Format the output as a simple list.
         """
         
-        # AI se response generate karwayein
         response = model.generate_content(prompt)
         return response.text
         
@@ -70,22 +57,21 @@ def get_predicted_keywords(headline):
         print(f"Gemini AI Error: {e}")
         return None
 
-# --- Main Program ko Run Karein ---
-print("🚀 Predictive Keyword Hunter chal raha hai...")
+print("🚀 Predictive Keyword Hunter is running...")
 
-print("Step 1: NewsAPI se top headline laa raha hai...")
+print("Step 1: Fetching top headline from NewsAPI...")
 headline = get_top_headline()
 
 if headline:
-    print(f"\n🔥 Top Headline Mili: {headline}")
+    print(f"\n🔥 Top Headline Found: {headline}")
     
-    print("\nStep 2: Gemini AI se keywords predict karwa raha hai...")
+    print("\nStep 2: Predicting keywords with Gemini AI...")
     keywords = get_predicted_keywords(headline)
     
     if keywords:
         print("\n--- 🤖 Predicted Keywords List ---")
         print(keywords)
     else:
-        print("Gemini AI se keywords nahi mil sake.")
+        print("Could not get keywords from Gemini AI.")
 else:
-    print("NewsAPI se koi headline nahi mili.")
+    print("No headline received from NewsAPI.")
